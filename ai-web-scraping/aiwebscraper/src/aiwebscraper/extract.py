@@ -11,11 +11,7 @@ from bs4 import BeautifulSoup
 from aiwebscraper.browser import Browser
 
 from aiwebscraper.cache import FunctionCache
-from aiwebscraper import get_openai_key
-
-
-MODEL = "gpt-4o-2024-08-06"
-# MODEL = "gpt-4o-mini"
+from aiwebscraper import get_openai_key, get_openai_model
 
 
 class ParsedColumn(BaseModel):
@@ -87,7 +83,7 @@ the collapsed row as multiple JSON values to ensure all columns contain the same
 of rows.
     """
     table = chat_completion_parsed_table_cached(
-        model=MODEL,
+        model=get_openai_model(),
         messages=[
             {
                 "role": "system",
@@ -131,7 +127,7 @@ def get_xpath_for_column(
     # TODO: note that the extracted values might not match 100% since the extractor
     # might interpret images as text. we need to add that to the prompt somehow
     completion = client.beta.chat.completions.parse(
-        model=MODEL,
+        model=get_openai_model(),
         messages=[
             {
                 "role": "system",

@@ -6,7 +6,7 @@ import pandas as pd
 
 from aiwebscraper.extract import WebScraper, get_data, get_from_xpaths
 from aiwebscraper.cache import FunctionCache
-from aiwebscraper import set_openai_key, get_openai_key
+from aiwebscraper import set_openai_key, get_openai_key, set_openai_model
 
 
 class ScrapingStep(Enum):
@@ -44,6 +44,9 @@ get_data_cached = get_data
 
 st.title("AI Web Scraper")
 st.write("Scrape a website using AI.")
+st.markdown(
+    "*Warning: Passing HTML pages can be expensive due to the high token count!*"
+)
 
 
 def scrape_example(url: str, xpath: str):
@@ -68,7 +71,19 @@ def scrape_example(url: str, xpath: str):
 
 
 openai_key = st.text_input("Enter your OpenAI API key:")
+model = st.selectbox(
+    "Select GPT model:",
+    (
+        "gpt-4o-2024-08-06",
+        "gpt-4o",
+        "gpt-4o-mini",
+    ),
+    key="gpt_model",
+)
+
+
 set_openai_key(openai_key)
+set_openai_model(model)
 
 
 if st.session_state.step == ScrapingStep.WAITING_FOR_INPUT.value:
