@@ -11,8 +11,7 @@ from bs4 import BeautifulSoup
 from aiwebscraper.browser import Browser
 
 from aiwebscraper.cache import FunctionCache
-
-client = OpenAI()
+from aiwebscraper import get_openai_key
 
 
 MODEL = "gpt-4o-2024-08-06"
@@ -57,6 +56,8 @@ path_to_cache = find_root_dir() / "cache.db"
 
 
 def chat_completion_parsed_table(*, model, messages):
+    client = OpenAI(api_key=get_openai_key())
+
     completion = client.beta.chat.completions.parse(
         model=model,
         messages=messages,
@@ -66,10 +67,12 @@ def chat_completion_parsed_table(*, model, messages):
     return {c.name: c.values for c in parsed.columns}
 
 
-chat_completion_parsed_table_cached = FunctionCache(
-    chat_completion_parsed_table,
-    path_to_cache,
-)
+# chat_completion_parsed_table_cached = FunctionCache(
+#     chat_completion_parsed_table,
+#     path_to_cache,
+# )
+
+chat_completion_parsed_table_cached = chat_completion_parsed_table
 
 
 def extract_table_data(html_content: str) -> ParsedTable:
@@ -123,6 +126,8 @@ def get_xpath_for_column(
 
     Return the full matching element, not just the text.
     """
+    client = OpenAI(api_key=get_openai_key())
+
     # TODO: note that the extracted values might not match 100% since the extractor
     # might interpret images as text. we need to add that to the prompt somehow
     completion = client.beta.chat.completions.parse(

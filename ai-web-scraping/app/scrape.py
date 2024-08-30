@@ -6,6 +6,7 @@ import pandas as pd
 
 from aiwebscraper.extract import WebScraper, get_data, get_from_xpaths
 from aiwebscraper.cache import FunctionCache
+from aiwebscraper import set_openai_key, get_openai_key
 
 
 class ScrapingStep(Enum):
@@ -24,6 +25,9 @@ if "df" not in st.session_state:
 
 
 def _scrape_data(*, url: str, xpath: str):
+    if not get_openai_key():
+        raise ValueError("OpenAI API key is not set.")
+
     try:
         scraper = WebScraper(url, xpath)
         parsed_table = scraper.extract_table_data()
@@ -32,11 +36,11 @@ def _scrape_data(*, url: str, xpath: str):
         return str(e)
 
 
-scrape_data = FunctionCache(_scrape_data, "cache.db")
-get_data_cached = FunctionCache(get_data, "cache.db")
+# scrape_data = FunctionCache(_scrape_data, "cache.db")
+# get_data_cached = FunctionCache(get_data, "cache.db")
 
-# scrape_data = _scrape_data
-# get_data_cached = get_data
+scrape_data = _scrape_data
+get_data_cached = get_data
 
 st.title("AI Web Scraper")
 st.write("Scrape a website using AI.")
@@ -61,6 +65,10 @@ def scrape_example(url: str, xpath: str):
         st.session_state.result = result
         st.session_state.step = ScrapingStep.WAITING_FOR_CONFIRMATION.value
         st.rerun()
+
+
+openai_key = st.text_input("Enter your OpenAI API key:")
+set_openai_key(openai_key)
 
 
 if st.session_state.step == ScrapingStep.WAITING_FOR_INPUT.value:
