@@ -1,0 +1,10 @@
+openai
+selenium
+tenacity
+beautifulsoup4
+
+streamlit
+
+
+# for debugging docker image
+ipython

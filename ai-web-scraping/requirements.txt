@@ -1,0 +1,16 @@
+openai
+selenium
+tenacity
+beautifulsoup4
+
+streamlit
+
+# testing
+pytest
+pydantic
+syrupy
+
+
+# debugging
+ipython
+ipdb

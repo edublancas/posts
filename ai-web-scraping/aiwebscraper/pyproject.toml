@@ -1,0 +1,25 @@
+[tool.pytest.ini_options]
+addopts = "--pdbcls=IPython.terminal.debugger:Pdb"
+
+[tool.nbqa.addopts]
+flake8 = [
+    # notebooks allow non-top imports
+    "--extend-ignore=E402",
+    # jupysql notebooks might have "undefined name" errors
+    # due to the << operator
+    # W503, W504 ignore line break after/before
+    # binary operator since they are conflicting
+    "--ignore=F821, W503, W504"
+]
+
+[tool.pkgmt]
+# used to add links to issue numbers in CHANGELOG.md
+github = "ploomber/aiwebscraper"
+# used to check that the package is importable when running pkgmt setup
+package_name = "aiwebscraper"
+# defines the conda environment name when using pkgmt setup, if missing,
+# package_name is used
+env_name = "aiwebscraper"
+
+[tool.pkgmt.check_links]
+extensions = ["md", "rst", "py", "ipynb"]
