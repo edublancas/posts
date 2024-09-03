@@ -1,0 +1,13 @@
+beautifulsoup4
+requests
+tiktoken
+openai
+pydantic
+pandas
+seaborn
+matplotlib
+markdownify
+plotly
+
+# for debugging
+ipython

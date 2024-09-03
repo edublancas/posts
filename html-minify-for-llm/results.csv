@@ -1,0 +1,17 @@
+model,input,cost,accuracy,question_type
+gpt-4o-mini,raw,0.1630935,0.8,unstructured
+gpt-4o-mini,clean,0.052280999999999994,0.8,unstructured
+gpt-4o-mini,unstructured,0.0178905,0.9,unstructured
+gpt-4o-mini,markdown,0.066414,0.8,unstructured
+gpt-4o-mini,raw,0.04974,0.5,structured
+gpt-4o-mini,clean,0.014857500000000003,0.3,structured
+gpt-4o-mini,unstructured,0.004850999999999999,0.4,structured
+gpt-4o-mini,markdown,0.027072,0.1,structured
+gpt-4o-2024-08-06,raw,2.718225,0.9,unstructured
+gpt-4o-2024-08-06,clean,0.8713499999999998,0.9,unstructured
+gpt-4o-2024-08-06,unstructured,0.298175,0.9,unstructured
+gpt-4o-2024-08-06,markdown,1.1068999999999998,0.9,unstructured
+gpt-4o-2024-08-06,raw,0.8289999999999998,0.8,structured
+gpt-4o-2024-08-06,clean,0.24762499999999996,0.7,structured
+gpt-4o-2024-08-06,unstructured,0.08084999999999999,0.7,structured
+gpt-4o-2024-08-06,markdown,0.4512,0.7,structured
