@@ -7,3 +7,12 @@
 - `lib.py`: core logic (used in `app.py` and `benchmark.py`)
 
 
+## Deployment
+
+I deployed this to [Ploomber Cloud](https://ploomber.io/):
+
+```python
+pip install ploomber-cloud
+ploomber-cloud init
+ploomber-cloud deploy
+```
