@@ -8,6 +8,7 @@ seaborn
 matplotlib
 markdownify
 plotly
+streamlit
 
 # for debugging
 ipython

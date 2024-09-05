@@ -135,3 +135,16 @@ if st.button("Analyze"):
         display_results(url)
     else:
         st.error("Please enter a URL.")
+
+
+# Add a footer to the Streamlit app
+st.markdown("---")  # Add a horizontal line for separation
+st.markdown(
+    """
+    <div style="text-align: center; color: #888888; font-size: 1.0em;">
+        Hosting sponsored by 
+        <a href="https://ploomber.io/" target="_blank">Ploomber</a>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
